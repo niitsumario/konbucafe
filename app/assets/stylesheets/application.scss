@@ -18,6 +18,79 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+ body{
+  font-family: "Gill Sans", sans-serif;
+ }
+
  .iro{
   color: #a0522d;
+ }
+
+ .box-inner{
+  max-width: 700px;
+  margin: 200px auto;
+  padding: 0 40px;
+ }
+
+ .box{
+  margin: 100px auto 0;
+ }
+
+ .fade-in {
+  opacity: 0;
+  transition-duration: 1000ms;
+  transition-property: opacity, transform;
+ }
+
+ .fade-in-up {
+  background-image: image-url('8054.jpg');
+  background-size: cover;
+  width: 500px;
+  height: 500px;
+  transform: translate(0, 50px);
+ }
+
+ .fade-in-down {
+  background-image: image-url('8051.jpg');
+  background-size: cover;
+  width: 500px;
+  height: 500px;
+  transform: translate(0, -50px);
+ }
+
+ .fade-in-left {
+  background-image: image-url('8052.jpg');
+  background-size: cover;
+  width: 500px;
+  height: 500px;
+  transform: translate(-50px, 0);
+ }
+
+ .fade-in-right {
+  background-image: image-url('8053.jpg');
+  background-size: cover;
+  width: 500px;
+  height: 500px;
+  transform: translate(50px, 0);
+ }
+
+ .fade-in-signup {
+  background-image: image-url('SignUp.png');
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+  transform: translate(0, 50px);
+ }
+
+ .fade-in-login {
+  background-image: image-url('Login.png');
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+  transform: translate(0, -50px);
+ }
+
+ .scroll-in {
+  opacity: 1;
+  transform: translate(0, 0);
  }

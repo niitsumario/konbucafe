@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <h4 class="col-7 mx-auto mt-5 mb-5 text-center font">あなたにぴったりなカフェを探そう！</h4>
+  </div>
+  <div class="box-inner">
+    <div class="fade-in fade-in-up box"></div>
+    <div class="fade-in fade-in-left box"></div>
+    <div class="fade-in fade-in-right box"></div>
+    <div class="fade-in fade-in-down box"></div>
+    <div class="row">
+      <div class="col-md-6">
+        <%= link_to new_user_registration_path do %>
+          <div class="fade-in fade-in-signup box"></div>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <%= link_to new_user_session_path do %>
+          <div class="fade-in fade-in-login box"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
