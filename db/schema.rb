@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_10_144309) do
+ActiveRecord::Schema.define(version: 2021_07_12_143916) do
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title"
+    t.string "image_id"
+    t.string "shop_name"
+    t.text "introduction"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spots", force: :cascade do |t|
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "review_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "post_id"
+    t.index ["review_id_id"], name: "index_spots_on_review_id_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

@@ -72,14 +72,12 @@
 }
 
 .box-overall {
-  margin: 200px auto;
+  margin: 100px auto;
   padding: 0 40px;
 }
 
 .img-box {
-  margin: 100px auto 0;
-  // 画像に影をつける
-  box-shadow: 0 10px 10px #666666;
+  margin: 0 auto 200px;
 }
 
 .about-img {
@@ -87,4 +85,17 @@
   background-size: cover;
   width: 716px;
   height: 447px;
+  // 画像に影をつける
+  box-shadow: 0 10px 10px #666666;
+}
+
+.todo {
+  color: #A0522D;
+}
+
+.todo-img {
+  background-image: image-url('todo.png');
+  background-size: cover;
+  width: 476px;
+  height: 434px;
 }
