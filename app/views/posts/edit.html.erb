@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row mt-5 mb-5">
+    <div class="col-lg-5 px-5 mx-auto">
+      <h3 class="mb-5 text-center">Editing Post</h3>
+      <%= form_with model: @post, local:true do |f| %>
+        <div class="row">
+          <p class="col-md-4">タイトル<p>
+          <div class="col-md-8 form-group">
+            <%= f.text_field :title, autofocus: true, size: "30x20" %>
+          </div>
+        </div>
+        <div class="row">
+          <p class="col-md-4">画像</p>
+          <div class="col-md-8 form-group">
+            <%= f.attachment_field :image %>
+          </div>
+        </div>
+        <div class="row">
+          <p class="col-md-4">店名</p>
+          <div class="col-md-8 form-group">
+            <%= f.text_field :shop_name, size: "30x20" %>
+          </div>
+        </div>
+        <div class="row">
+          <p class="col-md-4">説明</p>
+          <div class="col-md-8 form-group">
+            <%= f.text_area :introduction, size: "30x5" %>
+          </div>
+        </div>
+        <div class="text-center">
+          <div class="mb-3 form-group">
+            <%= f.submit 'Update Post', class:"btn btn-info" %>
+          </div>
+          <button type="button" class="btn btn-light">
+            <%= link_to "Back", post_path(@post.id), class: 'back' %>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
