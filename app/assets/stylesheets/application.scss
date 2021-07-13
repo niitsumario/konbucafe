@@ -28,6 +28,16 @@
   padding-bottom: 1px; /* 最終行の下にも罫線を引く */
  }
 
+ header{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+ }
+
  .iro{
   color: #a0522d;
+ }
+
+ .back{
+  color: #000;
  }

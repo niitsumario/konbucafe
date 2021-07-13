@@ -2,3 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.cafe-form{
+  position: fixed;
+}
+
+.place{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.height{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.edit, .destroy{
+  color: #fff;
+}
