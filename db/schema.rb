@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_12_143916) do
+ActiveRecord::Schema.define(version: 2021_07_13_144546) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
@@ -26,11 +26,10 @@ ActiveRecord::Schema.define(version: 2021_07_12_143916) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
-    t.integer "review_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "post_id"
-    t.index ["review_id_id"], name: "index_spots_on_review_id_id"
+    t.index ["post_id"], name: "index_spots_on_post_id"
   end
 
   create_table "users", force: :cascade do |t|
