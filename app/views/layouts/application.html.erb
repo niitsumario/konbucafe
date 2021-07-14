@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Konbucafe</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= include_gon %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.css" type="text/css" media="all" />
+  </head>
+
+  <body>
+
+
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(221,160,221,0.8);">
+        <div class="container">
+          <a class="navbar-brand" href="/"><span>コンブカフェ</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+            <li>
+              <%= link_to "posts list", posts_path, class: 'fas fa-coffee nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "logout", destroy_user_session_path, method: :delete, class: 'fas fa-sign-out-alt nav-link text-light' %>
+            </li>
+            <% else %>
+            <li>
+              <%= link_to "About", about_path, class: 'fas fa-desktop nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "sign up", new_user_registration_path, class: 'fas fa-user-plus nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "login", new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-light' %>
+            </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <%= yield %>
+  </body>
+</html>

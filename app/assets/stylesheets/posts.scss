@@ -1,0 +1,21 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.cafe-form{
+  position: fixed;
+}
+
+.place{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.height{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.edit, .destroy{
+  color: #fff;
+}

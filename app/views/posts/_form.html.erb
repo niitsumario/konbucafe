@@ -1,0 +1,24 @@
+<div class="col-md-3 cafe-form">
+  <h3>New Post</h3>
+  <%= form_with model: post_new, local:true do |f| %>
+    <div class="form-group">
+      <label for="post_title">タイトル</label><br>
+      <%= f.text_field :title, size: "30x20" %>
+    </div>
+    <div class="form-group">
+      <label for="post_image">画像</label><br>
+      <%= f.attachment_field :image %>
+    </div>
+    <div class="form-group">
+      <label for="post_shop_name">店名</label><br>
+      <%= f.text_field :shop_name, size: "30x20" %>
+    </div>
+    <div class="form-group">
+      <label for="post_introduction">説明</label><br>
+      <%= f.text_area :introduction, size: "30x5" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit 'Create Post', class:"btn btn-success" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row mt-5 mb-5">
+    <%= render 'posts/form', post_new: @post_new %>
+    <div class="col-md-6">
+      <h3 class="mb-4 text-center">Post Details</h3>
+      <%#= link_to @user.name, user_path(@user.id) %>
+      <h5 class="mb-3 text-center"><%= @post.title %></h5>
+      <div class="mb-3 text-center"><%= attachment_image_tag @post, :image, :fill, 500, 500 %></div>
+      <h5 class="mb-3 text-center">ShopName: <%= @post.shop_name %></h5>
+      <p class="mb-3 place"><%= safe_join(@post.introduction.split("\n"), tag(:br)) %></p>
+      <div class="text-center">
+        <button type="button" class="btn btn-light">
+          <%= link_to "Back", posts_path, class: 'back' %>
+        </button>
+        <% if @post.user == current_user %>
+          <button type="button" class="btn btn-info">
+            <%= link_to "Edit", edit_post_path(@post), class: 'edit' %>
+          </button>
+        <% end %>
+        <% if @post.user == current_user %>
+        <button type="button" class="btn btn-danger">
+          <%= link_to "Destroy", post_path(@post), method: :delete, data: {confirm: "本当に削除しますか？"}, class: 'destroy' %>
+        </button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
