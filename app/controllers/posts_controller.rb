@@ -16,6 +16,7 @@ class PostsController < ApplicationController
   def show
     @post_new = Post.new
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new
     #@lat = @post.spot.latitude
     #@lng = @post.spot.longitude
     #gon.lat = @lat
