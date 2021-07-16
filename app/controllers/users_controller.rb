@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def likes
     @post_new = Post.new
     @user = User.find_by(id: params[:id])
-    @likes = Like.where(user_id: @user.id)
+    @likes = Like.where(user_id: @user.id).page(params[:page]).per(5)
   end
 
   #————————フォロー・フォロワー一覧を表示する-————————————
