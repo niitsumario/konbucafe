@@ -8,6 +8,8 @@
       <h3 class="mb-4 text-center">User Information</h3>
       <% end %>
       <h5 class="mb-4 text-center"><%= @user.name %></h5>
+      <div class="mb-2 text-center"><%= render 'status', user: @user %></div>
+      <div class="mb-4 text-center"><%= render 'follow_form', user: @user %></div>
       <div class="mb-4 layout">
         <%= simple_format(h(@user.introduction)) %>
       </div>
@@ -15,6 +17,9 @@
       <% if @user.id == current_user.id %>
         <button type="button" class="btn btn-info">
           <%= link_to "Edit", edit_user_path(@user), class: 'edit' %>
+        </button>
+        <button type="button" class="btn btn-warning">
+          <%= link_to "Liked posts", likes_path(@user), class: 'edit' %>
         </button>
       <% end %>
       </div>

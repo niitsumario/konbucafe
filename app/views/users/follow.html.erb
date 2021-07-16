@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row mt-5 mb-5">
+    <%= render 'posts/form', post_new: @post_new %>
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+      <h3 class="mb-4">Followings</h3>
+      <% @user.followings.each do |user| %>
+        <div>
+          <%= link_to user_path(user) do %>
+            <p class="link"><%= user.name %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

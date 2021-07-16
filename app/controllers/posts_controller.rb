@@ -45,6 +45,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def ranks
+    @post_new = Post.new
+    @all_ranks = Post.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+  end
+
   private
 
   def post_params
