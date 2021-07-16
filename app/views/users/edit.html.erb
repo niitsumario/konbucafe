@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row mt-5 mb-5">
+    <div class="col-lg-5 px-5 mx-auto">
+      <h3 class="mb-5 text-center">Editing Profale</h3>
+      <%= form_with model:@user, local:true do |f| %>
+      <div class="row">
+        <p class="col-md-4">Name<p>
+        <div class="col-md-8 form-group">
+          <%= f.text_field :name, autofocus: true, size: "30x20" %>
+        </div>
+      </div>
+      <div class="row">
+        <p class="col-md-4">Introduction</p>
+        <div class="col-md-8 form-group">
+          <%= f.text_area :introduction, size: "30x5" %>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="mb-3 form-group">
+          <%= f.submit 'Update Profale', class:"btn btn-info" %>
+        </div>
+        <button type="button" class="btn btn-light">
+          <%= link_to "Back", user_path(current_user.id), class: 'back' %>
+        </button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

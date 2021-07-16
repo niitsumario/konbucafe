@@ -41,3 +41,15 @@
  .back{
   color: #000;
  }
+
+ // ページネーション
+ .pagination>li>a {
+  border: none;     /*枠線をなくす*/
+  color: #663333;   /*文字の色を変える*/
+  background-color: #D8BfD8;    /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+ }
+
+ .pagination>li>a:hover {
+  border-radius: 15px;    /*角を丸くする*/
+ }

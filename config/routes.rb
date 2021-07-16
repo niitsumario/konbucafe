@@ -6,5 +6,12 @@ Rails.application.routes.draw do
     resource :likes, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
   end
-  get "users/:id/likes" => "users#likes"
+  get "post/ranks" => "posts#ranks", as: 'ranks'
+  resources :users, only: [:show, :edit, :update] do
+    member do
+     get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
+  get "users/:id/likes" => "users#likes", as: 'likes'
 end
