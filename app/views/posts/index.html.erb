@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row mt-5 mb-5">
+  <% if user_signed_in? %>
     <%= render 'posts/form', post_new: @post_new %>
     <div class="col-md-1"></div>
     <%= render 'posts/index', posts: @posts %>
+  <% else %>
+  <div class="col-md-2"></div>
+  <%= render 'posts/index', posts: @posts %>
+  <% end %>
   </div>
 </div>
