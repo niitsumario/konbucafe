@@ -17,9 +17,13 @@
           いいね数<br>
           <%= post.likes.count %>
         </div>
-        <div>
+        <div class="pb-4">
           コメント数<br>
           <%= post.post_comments.count %>
+        </div>
+        <div>
+          投稿日時<br>
+          <%= post.created_at.strftime('%Y/%m/%d') %><br>
         </div>
       </div>
     </div>

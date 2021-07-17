@@ -2,7 +2,9 @@ class PostsController < ApplicationController
 
   def index
     @post_new = Post.new
-    #@post_new.build_spot
+    #地図投稿機能
+    @post_new.build_spot
+
     @posts = Post.all.order(created_at: :desc)
   end
 
@@ -17,14 +19,14 @@ class PostsController < ApplicationController
     @post_new = Post.new
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
-    #@lat = @post.spot.latitude
-    #@lng = @post.spot.longitude
-    #gon.lat = @lat
-    #gon.lng = @lng
+    @lat = @post.spot.latitude
+    @lng = @post.spot.longitude
   end
 
   def edit
     @post = Post.find(params[:id])
+    @lat = @post.spot.latitude
+    @lng = @post.spot.longitude
     if @post.user != current_user
       redirect_to posts_path
     end
@@ -47,13 +49,14 @@ class PostsController < ApplicationController
 
   def ranks
     @post_new = Post.new
+    @post_new.build_spot
     @all_ranks = Post.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :image, :shop_name, :introduction)#, spot_attributes: [:address])
+    params.require(:post).permit(:title, :image, :shop_name, :introduction, spot_attributes: [:address])
   end
 
 end

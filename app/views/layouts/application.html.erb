@@ -54,5 +54,67 @@
       </nav>
     </header>
     <%= yield %>
+    <footer style="background-color: rgba(232,191,243,0.8);">
+      <div class="container">
+        <div class="row">
+          <div class="mt-3 mx-auto">
+            <p>Copyright © 2021 Rio NiitsumaAll Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+    var map //変数の定義
+    var geocoder //変数の定義
+    var marker
+    function initMap(){ //コールバック関数
+      geocoder = new google.maps.Geocoder() //GoogleMapsAPIジオコーディングサービスにアクセス
+      var lat = <%= @lat.present? ? @lat:35.6594666 %>
+      var lng = <%= @lng.present? ? @lng:139.7005536 %>
+      if(document.getElementById('map')){ //'map'というidを取得できたら実行
+        map = createMap('map',lat,lng);
+      }else{ //'map'というidが無かった場合
+        map = createMap('show_map',lat,lng);
+        createMark(map,{lat: lat, lng: lng});
+      }
+    }
+    function createMap(elementId,lat,lng){
+      return new google.maps.Map(document.getElementById(elementId), { //'map','show_map'というidを取得してマップを表示
+        center: {lat: lat, lng: lng},
+        zoom: 15, //拡大率（1〜21まで設定可能）
+      });
+    }
+
+    function codeAddress(){ //コールバック関数
+      let inputAddress = document.getElementById('address').value; //'address'というidの値（value）を取得
+      geocoder.geocode( { 'address': inputAddress}, function(results, status) { //ジオコードしたい住所を引数として渡す
+        if (status == 'OK') {
+          let lat = results[0].geometry.location.lat(); //ジオコードした結果の緯度
+          let lng = results[0].geometry.location.lng(); //ジオコードした結果の経度
+          let mark = {
+              lat: lat, //緯度
+              lng: lng  //経度
+          };
+          map.setCenter(results[0].geometry.location); //最も近い、判読可能な住所を取得したい場所の緯度・経度
+          createMark(map,results[0].geometry.location)
+        } else {
+          alert('該当する結果がありませんでした');
+        }
+      });
+    }
+    function createMark(map,position){
+      if (marker){
+        marker.setMap(null);
+      }
+      marker = new google.maps.Marker({ //GoogleMapにマーカーを落とす
+        position:  position, //マーカーを落とす位置を決める（値はDBに入っている）
+        map: map //マーカーを落とすマップを指定
+      });
+    }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_KEY"] %>&callback=initMap"asyncdefer></script>
+    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+    <script src="//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" type="text/javascript"></script>
   </body>
 </html>

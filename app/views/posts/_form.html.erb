@@ -1,24 +1,33 @@
 <div class="col-md-3 cafe-form">
   <h3>New Post</h3>
-  <%= form_with model: post_new, local:true do |f| %>
+  <%= form_with(model: post_new, local:true, multipart: true) do |f| %>
     <div class="form-group">
-      <label for="post_title">タイトル</label><br>
-      <%= f.text_field :title, size: "30x20" %>
+      <label for="post_title">Title</label><br>
+      <%= f.text_field :title, size: "30x20", placeholder: "タイトル" %>
     </div>
     <div class="form-group">
       <label for="post_image">画像</label><br>
       <%= f.attachment_field :image %>
     </div>
     <div class="form-group">
-      <label for="post_shop_name">店名</label><br>
-      <%= f.text_field :shop_name, size: "30x20" %>
+      <label for="post_shop_name">ShopName</label><br>
+      <%= f.text_field :shop_name, size: "30x20", placeholder: "店名" %>
     </div>
     <div class="form-group">
-      <label for="post_introduction">説明</label><br>
-      <%= f.text_area :introduction, size: "30x5" %>
+      <label for="post_introduction">Introduction</label><br>
+      <%= f.text_area :introduction, size: "30x5", placeholder: "説明" %>
+    </div>
+    <div class="form-group">
+      <%= f.fields_for :spot do |s| %>
+        <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %>
+        <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: 'spot__text' %>
+        <input onclick="codeAddress()" type="button" value="検索する">
+        <div id="map" style="height: 300px; width: 300px;"></div>
+      <% end %>
     </div>
     <div class="form-group">
       <%= f.submit 'Create Post', class:"btn btn-success" %>
     </div>
   <% end %>
 </div>
+
