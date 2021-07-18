@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row mt-5 mb-5">
     <%= render 'posts/form', post_new: @post_new %>
     <div class="col-md-8">
@@ -20,6 +20,9 @@
         </button>
         <button type="button" class="btn btn-warning">
           <%= link_to "Liked posts", likes_path(@user), class: 'edit' %>
+        </button>
+        <button type="button" class="btn btn-light">
+          <%= link_to "Calendar", blogs_path, class: 'calendar' %>
         </button>
       <% end %>
       </div>

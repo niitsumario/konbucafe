@@ -12,6 +12,7 @@ Rails.application.routes.draw do
      get :following, :followers
     end
   end
+  resources :blogs, only: [:index, :create, :show, :edit, :update, :destroy]
   resources :relationships, only: [:create, :destroy]
   get "users/:id/likes" => "users#likes", as: 'likes'
 end

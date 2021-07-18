@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_102523) do
+ActiveRecord::Schema.define(version: 2021_07_17_153130) do
+
+  create_table "blogs", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "start_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"

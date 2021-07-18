@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   attachment :image
   has_many :liked_posts, through: :likes, source: :post
+  has_many :blogs, dependent: :destroy
 
   #フォロー、フォロワー機能↓
   has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
