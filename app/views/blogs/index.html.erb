@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+<div class="container mt-3 mb-5">
+  <h1 class="mb-5 text-center">Calendar</h1>
+  <div class="row">
+    <div class="col-md-3">
+    	<h5>今後の予定一覧</h5>
+      <div class="row mb-4">
+        <% @blogs.each do |blog| %>
+        <div class="col-md-7">
+          <%= link_to blog.title, blog_path(blog) %>
+        </div>
+        <div class="col-md-5">
+          <%= blog.start_time.strftime("%m/%d %H:%M") %>
+        </div>
+        <% end %>
+      </div>
+      <%= form_with(model: @blog, local: true) do |form| %>
+        <div class="title">
+          <div class="form-tag">Title</div>
+          <%= form.text_field :title, placeholder: "タイトル" %>
+        </div>
+        <div class="content">
+          <div class="form-tag">Contents</div>
+          <%= form.text_field :content, placeholder: "内容" %>
+        </div>
+        <div class="mb-2 time">
+          <div class="form-tag">Date Time</div>
+          <%= form.datetime_select :start_time %>
+        </div>
+        <div class="submit">
+          <%= form.submit 'Create', class:"btn btn-success btn-sm" %>
+        </div>
+      <% end %>
+    </div>
+    <br>
+    <div class="col-md-9">
+    <%= month_calendar events: @blogs do |date, blogs| %>
+      <%= date.day %>
+      <% blogs.each do |blog| %>
+        <div>
+          <%= link_to blog.title, blog_path(blog) %>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,7 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
+ *= require simple_calendar
  *
  *= require_tree .
  *= require_self
@@ -28,6 +29,9 @@
   background-size: 100% 2.0em; /* 行の高さ */
   line-height: 1.5em; /* 文字の高さ */
   padding-bottom: 1px; /* 最終行の下にも罫線を引く */
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
  }
 
  header{
@@ -35,6 +39,13 @@
   position: sticky;
   top: 0;
   z-index: 100;
+ }
+
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
  }
 
  .konbu{
@@ -62,4 +73,12 @@
 
  .pagination>li>a:hover {
   border-radius: 15px;    /*角を丸くする*/
+ }
+
+ .edit, .destroy{
+  color: #fff;
+ }
+
+ .back{
+  color: #000;
  }
