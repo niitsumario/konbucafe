@@ -2,7 +2,7 @@
   <div class="row mt-5 mb-5">
     <div class="col-lg-5 px-5 mx-auto">
       <h3 class="mb-5 text-center">Editing Post</h3>
-      <%= form_with model: @post, local:true do |f| %>
+      <%= form_with(model: @post, local:true, multipart: true) do |f| %>
         <div class="row">
           <p class="col-md-4">タイトル<p>
           <div class="col-md-8 form-group">
@@ -26,6 +26,14 @@
           <div class="col-md-8 form-group">
             <%= f.text_area :introduction, size: "30x5" %>
           </div>
+        </div>
+        <div class="text-center form-group">
+          <%= f.fields_for :spot do |s| %>
+            <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %>
+            <%= s.text_field :address, id: "address", class: 'spot__text' %>
+            <input onclick="codeAddress()" type="button" value="検索する">
+            <div id="show_map" style="height: 300px; width: 300px; margin: 0 auto;"></div>
+          <% end %>
         </div>
         <div class="text-center">
           <div class="mb-3 form-group">

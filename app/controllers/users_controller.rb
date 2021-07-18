@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post_new = Post.new
+    @post_new.build_spot
     @posts = @user.posts.page(params[:page]).per(5)
   end
 
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
 
   def likes
     @post_new = Post.new
+    @post_new.build_spot
     @user = User.find_by(id: params[:id])
     @likes = Like.where(user_id: @user.id).page(params[:page]).per(5)
   end
@@ -28,6 +30,7 @@ class UsersController < ApplicationController
   #————————フォロー・フォロワー一覧を表示する-————————————
   def following
     @post_new = Post.new
+    @post_new.build_spot
     @user  = User.find(params[:id])
     @users = @user.followings
     render 'follow'
@@ -35,6 +38,7 @@ class UsersController < ApplicationController
 
   def followers
     @post_new = Post.new
+    @post_new.build_spot
     @user  = User.find(params[:id])
     @users = @user.followers
     render 'follower'
