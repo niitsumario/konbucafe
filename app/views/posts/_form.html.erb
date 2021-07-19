@@ -18,6 +18,10 @@
       <%= f.text_area :introduction, size: "30x5", placeholder: "説明" %>
     </div>
     <div class="form-group">
+      <label for="tag_tag_name">タグ</label>
+      <%= f.text_field :tag_name, size: "30x20", placeholder: "Wi-Fi,コンセント,静か" %>
+    </div>
+    <div class="form-group">
       <%= f.fields_for :spot do |s| %>
         <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %>
         <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: 'spot__text' %>
