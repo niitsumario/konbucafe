@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row mt-5 mb-5">
     <div class="col-lg-5 px-5 mx-auto">
       <h3 class="mb-5 text-center">Editing Post</h3>
@@ -25,6 +25,12 @@
           <p class="col-md-4">説明</p>
           <div class="col-md-8 form-group">
             <%= f.text_area :introduction, size: "30x5" %>
+          </div>
+        </div>
+        <div class="row">
+          <p class="col-md-4">タグ</p>
+          <div class="col-md-8 form-group">
+            <%= f.text_field :tag_name, value: @tag_list, size: "30x20" %>
           </div>
         </div>
         <div class="text-center form-group">

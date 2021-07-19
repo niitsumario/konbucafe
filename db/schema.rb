@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_17_153130) do
+ActiveRecord::Schema.define(version: 2021_07_19_063411) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -64,6 +64,21 @@ ActiveRecord::Schema.define(version: 2021_07_17_153130) do
     t.datetime "updated_at", null: false
     t.integer "post_id"
     t.index ["post_id"], name: "index_spots_on_post_id"
+  end
+
+  create_table "tag_maps", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_tag_maps_on_post_id"
+    t.index ["tag_id"], name: "index_tag_maps_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

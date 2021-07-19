@@ -1,4 +1,10 @@
 <div class="col-md-8">
+  <div class="mb-3">
+  <% @tags.each do |tag| %>
+    <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id ), class: "taglink" %>
+    <%= "(#{TagMap.where(tag_id: tag.id).count})" %>
+  <% end %>
+  </div>
   <h3>Posts</h3>
   <% posts.each do |post| %>
     <div class="row mb-5 height" style="background-color: #deb887;">

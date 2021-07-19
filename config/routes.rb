@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   resources :blogs, only: [:index, :create, :show, :edit, :update, :destroy]
   resources :relationships, only: [:create, :destroy]
   get "users/:id/likes" => "users#likes", as: 'likes'
+  resources :tags do
+    get 'posts', to: 'posts#taglists'
+  end
 end

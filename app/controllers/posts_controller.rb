@@ -2,29 +2,33 @@ class PostsController < ApplicationController
 
   def index
     @post_new = Post.new
-    #地図投稿機能
-    @post_new.build_spot
-
+    @post_new.build_spot #地図投稿機能
+    @tags = Tag.all
     @posts = Post.all.order(created_at: :desc)
   end
 
   def create
     @post_new = Post.new(post_params)
     @post_new.user_id = current_user.id
-    @post_new.save
-    redirect_to posts_path
+    tag_list = params[:post][:tag_name].split(",")
+    if @post_new.save
+      @post_new.save_tag(tag_list)
+      redirect_to posts_path
+    end
   end
 
   def show
     @post_new = Post.new
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+    @post_tags = @post.tags
     @lat = @post.spot.latitude
     @lng = @post.spot.longitude
   end
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list = @post.tags.pluck(:tag_name).join(",")
     @lat = @post.spot.latitude
     @lng = @post.spot.longitude
     if @post.user != current_user
@@ -34,8 +38,11 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path(@post.id)
+    tag_list = params[:post][:tag_name].split(",")
+    if @post.update(post_params)
+      @post.save_tag(tag_list)
+      redirect_to post_path(@post.id)
+    end
   end
 
   def destroy
@@ -51,6 +58,12 @@ class PostsController < ApplicationController
     @post_new = Post.new
     @post_new.build_spot
     @all_ranks = Post.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+  end
+
+  def taglists
+    @tags = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts
   end
 
   private
