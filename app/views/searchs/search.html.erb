@@ -1,0 +1,12 @@
+<div class="container mt-4 mb-4">
+<% if @model == 'user' %>
+  <h4 class="text-center">【User】検索ワード：<%= @content %></h4>
+  <%= render 'searchs/users', users: @records %>
+<% elsif @model == 'post' %>
+  <h4 class="text-center">【Post】検索ワード：<%= @content %></h4>
+    <%= render 'searchs/posts', posts: @records %>
+<% elsif @model == 'spot' %>
+  <h4 class="text-center">【Spot】検索ワード：<%= @content %></h4>
+    <%= render 'searchs/spots', spots: @records %>
+<% end %>
+</div>

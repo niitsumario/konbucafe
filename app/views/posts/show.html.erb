@@ -49,7 +49,7 @@
       <p class="mb-3 place"><%= safe_join(@post.introduction.split("\n"), tag(:br)) %></p>
       <div class="mb-3 text-center">
         <% @post_tags.each do |tag| %>
-          <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id), class: "taglink" %>
+          <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
         <% end %>
       </div>
       <div class="mb-3 show">

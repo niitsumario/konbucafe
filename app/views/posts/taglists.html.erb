@@ -2,7 +2,15 @@
   <h4 class="text-center"><%= "#{@tag.tag_name}" %>に関する投稿</h4>
   <div class="row">
     <div class="col-md-2"></div>
-    <%= render 'posts/index', posts: @posts %>
+    <div class="col-md-8">
+      <div class="mb-3">
+      <% @tags.each do |tag| %>
+        <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id ), class: "konbulink" %>
+        <%= "(#{TagMap.where(tag_id: tag.id).count})" %>
+      <% end %>
+      </div>
+      <%= render 'posts/index', posts: @posts %>
+    </div>
   </div>
 </div>
 
