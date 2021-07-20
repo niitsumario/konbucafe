@@ -1,0 +1,14 @@
+<div class="row mt-3 mb-2">
+  <h5 class="col-md-4" style="background-color: #66cdaa;">場所</h5>
+  <h5 class="col-md-3" style="background-color: #66cdaa;">タイトル</h5>
+  <h5 class="col-md-3" style="background-color: #66cdaa;">店名</h5>
+  <h5 class="col-md-2" style="background-color: #66cdaa;"></h5>
+</div>
+<div class="row">
+  <% spots.each do |spot| %>
+  <div class="col-md-4"><%= spot.address %></div>
+  <div class="col-md-3"><%= spot.post.title %></div>
+  <div class="col-md-3"><%= spot.post.shop_name %></div>
+  <div class="col-md-2"><%= link_to "詳細", post_path(spot.post.id), class: "konbulink" %></div>
+  <% end %>
+</div>

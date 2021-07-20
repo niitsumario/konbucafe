@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :tags do
     get 'posts', to: 'posts#taglists'
   end
+  get '/search', to: 'searchs#search'
 end

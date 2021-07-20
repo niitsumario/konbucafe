@@ -3,10 +3,28 @@
   <% if user_signed_in? %>
     <%= render 'posts/form', post_new: @post_new %>
     <div class="col-md-1"></div>
-    <%= render 'posts/index', posts: @posts %>
+    <div class="col-md-8">
+      <div class="mb-3">
+      <% @tags.each do |tag| %>
+        <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id ), class: "konbulink" %>
+        <%= "(#{TagMap.where(tag_id: tag.id).count})" %>
+      <% end %>
+      </div>
+      <h3>Posts</h3>
+      <%= render 'posts/index', posts: @posts %>
+    </div>
   <% else %>
-  <div class="col-md-2"></div>
-  <%= render 'posts/index', posts: @posts %>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="mb-3">
+      <% @tags.each do |tag| %>
+        <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id ), class: "konbulink" %>
+        <%= "(#{TagMap.where(tag_id: tag.id).count})" %>
+      <% end %>
+      </div>
+      <h3>Posts</h3>
+      <%= render 'posts/index', posts: @posts %>
+    </div>
   <% end %>
   </div>
 </div>
