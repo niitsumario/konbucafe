@@ -13,7 +13,7 @@ class SearchsController < ApplicationController
   private
 
   def search_for(model, content, method)
-    if model == 'user'
+    if model == 'user' #Userモデルだったら
       # 選択した検索方法がが完全一致だったら
       if method == 'perfect'
         User.where(name: content)
@@ -21,13 +21,13 @@ class SearchsController < ApplicationController
       else
         User.where('name LIKE ?', '%'+content+'%')
       end
-    elsif model == 'post'
+    elsif model == 'post' #Postモデルだったら
       if method == 'perfect'
         Post.where(title: content, shop_name: content, introduction: content)
       else
         Post.where(['title LIKE ? OR shop_name LIKE ? OR introduction LIKE ?', '%'+content+'%', '%'+content+'%', '%'+content+'%'])
       end
-    elsif model == 'spot'
+    elsif model == 'spot' #Spotモデルだったら
       if method == 'perfect'
         Spot.where(address: content)
       else

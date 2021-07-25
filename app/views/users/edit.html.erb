@@ -2,6 +2,12 @@
   <div class="row mt-5 mb-5">
     <div class="col-lg-5 px-5 mx-auto">
       <h3 class="mb-5 text-center">Editing Profale</h3>
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>件のエラーが発生しました
+        <% @user.errors.full_messages.each do |message| %>
+          <p class="text-danger"><%= message %></p>
+        <% end %>
+      <% end %>
       <%= form_with model:@user, local:true do |f| %>
       <div class="row">
         <p class="col-md-4">Name<p>
