@@ -1,5 +1,12 @@
 <div class="col-md-3 cafe-form">
   <h3>New Post</h3>
+  <% if @post_new.errors.any? %>
+    <%= @post_new.errors.count %>件のエラーが発生しました
+    <p>地図情報はもう一度検索し直してください</p>
+    <% @post_new.errors.full_messages.each do |message| %>
+    <p class="text-danger"><%= message %></p>
+    <% end %>
+  <% end %>
   <%= form_with(model: post_new, local:true, multipart: true) do |f| %>
     <div class="form-group">
       <label for="post_title">Title</label><br>
@@ -17,13 +24,14 @@
       <label for="post_introduction">Introduction</label><br>
       <%= f.text_area :introduction, size: "30x5", placeholder: "説明" %>
     </div>
-    <div class="form-group">
+    <div class="form-group mb-4">
       <label for="tag_tag_name">タグ</label>
       <%= f.text_field :tag_name, size: "30x20", placeholder: "Wi-Fi,コンセント,静か" %>
     </div>
     <div class="form-group">
       <%= f.fields_for :spot do |s| %>
         <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %>
+        <p>スポットを入力したら、<br>必ず検索ボタンを押してください</p>
         <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: 'spot__text' %>
         <input onclick="codeAddress()" type="button" value="検索する">
         <div id="map" style="height: 300px; width: 300px;"></div>

@@ -8,8 +8,14 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_parameter)
     @blog.user_id = current_user.id
-    @blog.save
-    redirect_to blogs_path
+    if @blog.save
+      redirect_to blogs_path, notice: '予定が新しく追加されました！'
+    else
+      @user = User.find(current_user.id)
+      @blog = @blog
+      @blogs = @user.blogs
+      render :index
+    end
   end
 
   def show
@@ -30,7 +36,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @blog.user_id = current_user.id
     if @blog.update(blog_parameter)
-      redirect_to blogs_path, notice: "編集しました"
+      redirect_to blogs_path, notice: "予定を編集しました"
     else
       render 'edit'
     end
@@ -40,7 +46,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @blog.user_id = current_user.id
     @blog.destroy
-    redirect_to blogs_path, notice:"削除しました"
+    redirect_to blogs_path, notice: "削除しました"
   end
 
   private
